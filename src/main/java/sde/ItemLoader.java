@@ -1,6 +1,7 @@
 package sde;
 
 import industryCalc.SdeConnection;
+import sde.model.Item;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,10 +9,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 
-public class DataLoader {
+public class ItemLoader {
 
-	public Sde loadData() {
-		HashMap<Integer, InvType> ores = new HashMap();
+	public HashMap<Integer, Item> load() {
+		HashMap<Integer, Item> items = new HashMap();
 
 		try (Connection c = SdeConnection.getDatabaseConnection(); Statement stmt = c.createStatement()) {
 			String sql = "SELECT invTypes.typeID, invTypes.typeName, invGroups.categoryID, invGroups.groupID, " +
@@ -29,7 +30,7 @@ public class DataLoader {
 					String groupName = ore.getString("groupName");
 					int materialTypeId = ore.getInt("materialTypeID");
 					int quantity = ore.getInt("quantity");
-					ores.put(typeID, new Refineable(typeID, groupID, typeName, null));
+					items.put(typeID, new Item());
 				} while (ore.next());
 
 			} catch (SQLException e) {
@@ -39,6 +40,6 @@ public class DataLoader {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return new Sde(ores);
+		return items;
 	}
 }

@@ -4,13 +4,13 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sde.DataLoader;
+import sde.ItemLoader;
 
 public class KrabKompanion extends Application {
-	private static DataLoader loader = new DataLoader();
+	private static ItemLoader loader = new ItemLoader();
 
 	public static void main(String args[]) {
-		Sde sde = loader.loadData();
+		Sde sde = loader.load();
 		System.out.println(sde.ores);
 		launch(args);
 	}
