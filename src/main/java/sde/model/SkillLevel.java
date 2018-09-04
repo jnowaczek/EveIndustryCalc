@@ -1,10 +1,10 @@
 package sde.model;
 
-public class RequiredSkill {
+public class SkillLevel {
 	private final int skillID;
 	private final int level;
 
-	public RequiredSkill(int skillID, int level) {
+	public SkillLevel(int skillID, int level) {
 		this.skillID = skillID;
 		this.level = level;
 	}
